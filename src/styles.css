@@ -1,0 +1,176 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cyan: var(--cyan);
+  --color-violet: var(--violet);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Futuristic dark navy palette */
+  --background: oklch(0.14 0.04 265);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.19 0.045 265);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.17 0.04 265);
+  --popover-foreground: oklch(0.97 0.01 250);
+  --primary: oklch(0.72 0.18 245);            /* electric blue */
+  --primary-foreground: oklch(0.14 0.04 265);
+  --secondary: oklch(0.24 0.05 265);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.22 0.04 265);
+  --muted-foreground: oklch(0.7 0.03 255);
+  --accent: oklch(0.72 0.18 300);             /* violet */
+  --accent-foreground: oklch(0.97 0.01 250);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.97 0.01 250);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.72 0.18 245);
+  --cyan: oklch(0.85 0.16 200);
+  --violet: oklch(0.72 0.2 300);
+  --chart-1: oklch(0.72 0.18 245);
+  --chart-2: oklch(0.78 0.17 195);
+  --chart-3: oklch(0.72 0.2 300);
+  --chart-4: oklch(0.82 0.16 150);
+  --chart-5: oklch(0.78 0.18 65);
+
+  --gradient-primary: linear-gradient(135deg, oklch(0.72 0.18 245), oklch(0.72 0.2 300));
+  --gradient-glow: radial-gradient(ellipse at top, oklch(0.72 0.18 245 / 0.25), transparent 60%);
+  --gradient-aurora: linear-gradient(120deg, oklch(0.72 0.18 245 / 0.4), oklch(0.78 0.18 195 / 0.35), oklch(0.72 0.2 300 / 0.4));
+  --shadow-glow: 0 0 60px -10px oklch(0.72 0.18 245 / 0.5);
+  --shadow-glow-violet: 0 0 60px -10px oklch(0.72 0.2 300 / 0.45);
+  --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.6);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.72 0.18 245 / 0.18), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, oklch(0.72 0.2 300 / 0.12), transparent 70%);
+    background-attachment: fixed;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection { background: oklch(0.72 0.18 245 / 0.35); color: var(--color-foreground); }
+}
+
+@layer utilities {
+  .glass {
+    background: linear-gradient(145deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.01));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid oklch(1 0 0 / 0.08);
+  }
+  .glass-strong {
+    background: linear-gradient(145deg, oklch(1 0 0 / 0.07), oklch(1 0 0 / 0.02));
+    backdrop-filter: blur(24px);
+    border: 1px solid oklch(1 0 0 / 0.1);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, oklch(0.95 0.02 250), oklch(0.78 0.18 245) 50%, oklch(0.78 0.18 300));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .border-gradient {
+    position: relative;
+  }
+  .border-gradient::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, oklch(0.72 0.18 245 / 0.6), transparent 40%, oklch(0.72 0.2 300 / 0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .glow { box-shadow: var(--shadow-glow); }
+  .glow-violet { box-shadow: var(--shadow-glow-violet); }
+  .bg-grid {
+    background-image:
+      linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  }
+  .bg-aurora { background: var(--gradient-aurora); }
+
+  @keyframes float-y { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+  @keyframes pulse-glow { 0%,100% { opacity: 0.6 } 50% { opacity: 1 } }
+  @keyframes shimmer { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }
+  @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+  @keyframes gradient-shift { 0%,100% { background-position: 0% 50% } 50% { background-position: 100% 50% } }
+
+  .animate-float { animation: float-y 6s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-marquee { animation: marquee 30s linear infinite; }
+  .animate-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
+  .shimmer {
+    background: linear-gradient(110deg, transparent 40%, oklch(1 0 0 / 0.15) 50%, transparent 60%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: oklch(0.72 0.18 245 / 0.15);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.72 0.18 245 / 0.35);
+  }
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: oklch(0.72 0.18 245 / 0.15) transparent;
+  }
+}
